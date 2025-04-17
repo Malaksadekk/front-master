@@ -10,12 +10,10 @@ function Doctors() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const API_BASE = process.env.REACT_APP_API_URL;
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${API_BASE}/api/doctors`);
+        const response = await axios.get("http://localhost:5000/api/doctors");
         setData(response.data);
       } catch (err) {
         setError(err.message);
@@ -24,11 +22,10 @@ function Doctors() {
       }
     };
     fetchData();
-  }, [API_BASE]);
+  }, []);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-
   const phone = "658 222 127";
   const email = "admin@gmail.com";
 
@@ -42,12 +39,12 @@ function Doctors() {
               <h2 className="fw-bolder">Mukti Professional Doctors</h2>
             </div>
             <div className="row justify-content-center">
-              {data?.slice(0, 4).map((doctor, index) => (
+              {data.slice(0, 4).map((doctor, index) => (
                 <div key={index} className="col-xl-3 col-lg-4 col-md-6 col-12">
                   <div className={styles["doctor-item"]}>
                     <div className={styles["doctor-img"] + " overflow-hidden"}>
                       <img
-                        src={`${API_BASE}/${doctor.img}`}
+                        src={`http://localhost:5000/${doctor.img}`}
                         alt="doctor"
                         className="w-100"
                       />

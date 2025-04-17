@@ -6,29 +6,19 @@ import styles from "./Doctors.module.css";
 
 const DoctorCard = () => {
   const [doctors, setDoctors] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/api/doctors`
-        );
+        const response = await axios.get("http://localhost:5000/api/doctors");
         setDoctors(response.data);
       } catch (error) {
-        console.error("Error fetching doctor data:", error);
-        setError("Failed to load doctors. Please try again later.");
-      } finally {
-        setLoading(false);
+        console.error("Error fetching doctor data: ", error);
       }
     };
 
     fetchDoctors();
   }, []);
-
-  if (loading) return <div className="text-center my-5">Loading doctors...</div>;
-  if (error) return <div className="alert alert-danger my-5">{error}</div>;
 
   return (
     <>
@@ -37,7 +27,7 @@ const DoctorCard = () => {
           <div className={`card h-100 ${styles.doctorCard}`}>
             <div className={styles.imageWrapper}>
               <img
-                src={`${process.env.REACT_APP_API_URL}/${doctor.img.replace(/\\/g, "/")}`}
+                src={`http://localhost:5000/${doctor.img.replace(/\\/g, "/")}`}
                 className={`${styles.image} card-img-top`}
                 alt={doctor.name}
                 onError={(e) => {
@@ -45,14 +35,14 @@ const DoctorCard = () => {
                   e.target.onerror = null;
                 }}
               />
-              <div className={styles.socialLinks}>
-                <a href="#" className={styles.socialLink}>
+              <div className={styles}>
+                <a href="#" className={styles}>
                   <i className="fab fa-facebook-f"></i>
                 </a>
-                <a href="#" className={styles.socialLink}>
+                <a href="#" className={styles}>
                   <i className="fab fa-twitter"></i>
                 </a>
-                <a href="#" className={styles.socialLink}>
+                <a href="#" className={styles}>
                   <i className="fab fa-linkedin-in"></i>
                 </a>
               </div>

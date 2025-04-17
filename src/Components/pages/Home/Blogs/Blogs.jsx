@@ -1,19 +1,20 @@
+import { faAnglesRight, faMessage } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import styles from "../Home.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAnglesRight, faMessage } from "@fortawesome/free-solid-svg-icons";
-import styles from "./Blogs.module.css"; // adjust if needed
 
 function Blogs() {
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(null);
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/blogPosts`);
+        const response = await axios.get("http://localhost:5000/api/blogPosts");
         console.log(response.data);
         setData(response.data);
       } catch (err) {
@@ -27,7 +28,6 @@ function Blogs() {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-
   return (
     <section
       className={`${styles.blog} ${styles["padding-tb"]} ${styles["home-bg-color"]}`}
@@ -45,9 +45,9 @@ function Blogs() {
                   <div className={`${styles["post-item"]} mb-xl-0`}>
                     <div className={`${styles["post-img"]} overflow-hidden`}>
                       <img
-                        src={`${process.env.REACT_APP_API_URL}/${blog?.imgSrc}`}
+                        src={`http://localhost:5000/${blog?.imgSrc}`}
                         alt="post"
-                        className="w-100"
+                        className="w-100 "
                       />
                     </div>
                     <div className={styles["post-content"]}>
@@ -81,4 +81,3 @@ function Blogs() {
 }
 
 export default Blogs;
-
