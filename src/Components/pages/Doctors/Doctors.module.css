@@ -1,0 +1,52 @@
+/* Doctors.module.css */
+
+.doctorCard {
+  transition: all 0.3s ease;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin: 0;
+}
+
+.doctorCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.imageWrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 300px;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.doctorCard:hover .image {
+  transform: scale(1.05);
+}
+
+.cardBody {
+  padding: 1rem;
+}
+
+.doctorName {
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.profession {
+  color: #0071ef;
+  font-weight: 500;
+  font-size: 1rem;
+  margin-bottom: 0;
+}

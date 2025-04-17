@@ -1,0 +1,23 @@
+.hero-section {
+  background-image: url("../../../../assets/images/background.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 60px 0;
+  color: #0071ef;
+  min-height: 40vh;
+  background-repeat: no-repeat;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.hero-section p {
+  color: #000;
+}
+
+.hero-section .img-fluid {
+  max-width: 100%;
+  height: auto;
+}

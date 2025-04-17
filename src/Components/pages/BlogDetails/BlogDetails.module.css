@@ -1,0 +1,64 @@
+.title-img {
+  height: 170px;
+  width: 100%;
+}
+
+.centered-blue {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #0071ef;
+  font-size: 20px;
+}
+
+.centered {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.blogDetailCard {
+  width: 80%;
+  padding-bottom: 20px;
+  margin-bottom: 50px;
+  margin-top: 70px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cardBlueText {
+  color: #0071ef;
+  font-style: bold;
+  margin-bottom: 0;
+}
+
+.heroSection {
+  background-image: url("/Hospital-DEPI-/HospitalSystem/client/src/assets/images/background.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 60px 0;
+  color: #0071ef;
+  min-height: 40vh;
+  background-repeat: no-repeat;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.heroSection p {
+  color: #000;
+}
+
+.heroSection .img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.blogImage {
+  width: 100%;
+  object-fit: cover;
+}

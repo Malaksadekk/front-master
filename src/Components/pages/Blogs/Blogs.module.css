@@ -1,0 +1,90 @@
+.title-img {
+  height: 170px;
+  width: 100%;
+}
+
+.centered-blue {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #0071ef;
+  font-size: 20px;
+}
+
+.centered {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.blogCard {
+  width: 40%;
+  margin-top: 40px;
+  margin-bottom: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0;
+  box-sizing: border-box;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+  padding: 0 !important;
+}
+
+
+.cardBlueText {
+  color: #0071ef !important;
+  font-style: bold !important;
+  margin-bottom: 0 !important;
+}
+
+.heroSection {
+  background-image: url("/Hospital-DEPI-/HospitalSystem/client/src/assets/images/background.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 60px 0;
+  color: #0071ef;
+  min-height: 40vh;
+  background-repeat: no-repeat;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.heroSection p {
+  color: #000;
+}
+
+.heroSection .img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.blogImage {
+  height: 15rem;
+}
+
+.readMore {
+  color: black !important;
+  text-align: left;
+  background-color: white !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border-radius: 0 !important;
+  width: 100%;
+  margin: 0 !important;
+  box-sizing: border-box;
+}
+
+.readMore:hover {
+  background-color: #0071ef !important;
+  color: white !important;
+  border-color: #0071ef !important;
+}
+
+@media (max-width: 992px) {
+  .contact-info {
+    display: none;
+  }
+}

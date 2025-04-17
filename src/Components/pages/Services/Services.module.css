@@ -1,0 +1,14 @@
+.carouselButton{
+    background-color: #0071ef;
+    border-radius: 50%;
+}
+
+.serviceImg{
+    width: 500px;
+    height: 320px;
+    object-fit: cover;
+}
+
+.serviceDesc{
+    width: 480px;
+}

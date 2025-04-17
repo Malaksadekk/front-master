@@ -1,0 +1,27 @@
+.map-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .my-map {
+    width: 100%;
+    height: 500px; 
+    margin: auto;
+    margin-bottom: 100px;
+    border: 1px solid #ccc; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .mapboxgl-ctrl-attrib, .mapboxgl-ctrl-logo {
+    display: none !important;
+  }
+
+  .mapboxgl-marker {
+    position: absolute;
+    z-index: 1; 
+  }
+  
