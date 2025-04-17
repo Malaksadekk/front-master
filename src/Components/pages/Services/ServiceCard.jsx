@@ -6,20 +6,21 @@ import styles from './Services.module.css';
 
 const ServiceCard = () => {
     const [services, setServices] = useState([]);
-
+    
     useEffect(() => {
         const fetchServices = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/services');
+                const API_BASE = process.env.REACT_APP_API_URL;
+                const response = await axios.get(`${API_BASE}/api/services`);
                 setServices(response.data);
             } catch (error) {
                 console.error("Error fetching services: ", error);
             }
         };
-
+    
         fetchServices();
     }, []);
-
+    
   return (
     <>
         {

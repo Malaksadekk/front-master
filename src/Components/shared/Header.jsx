@@ -5,6 +5,8 @@ import icon2 from "../../assets/images/nav-icon2.png";
 import icon3 from "../../assets/images/nav-icon3.png";
 import axios from "axios";
 
+const API_BASE = process.env.REACT_APP_API_URL;
+
 function Header() {
   const [sidebarActive, setSidebarActive] = useState(false);
   const [isSticky, setIsSticky] = useState(true);
@@ -13,7 +15,7 @@ function Header() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    function handleNabSticky() {
+    const handleNabSticky = () => {
       const screenWidth = window.matchMedia("(min-width: 992px)");
       const handleScreenResize = () => {
         if (screenWidth.matches) {
@@ -22,21 +24,17 @@ function Header() {
           setIsSticky(true);
         }
       };
-      handleScreenResize(); // Call on initial render
-      // Add event listener for screen width changes
+      handleScreenResize();
       screenWidth.addEventListener("change", handleScreenResize);
-      // Cleanup function to remove event listener
       return () => {
         screenWidth.removeEventListener("change", handleScreenResize);
       };
-    }
+    };
     handleNabSticky();
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5000/api/generalSettings"
-        );
+        const response = await axios.get(`${API_BASE}/api/generalSettings`);
         setData(response.data[0]);
       } catch (err) {
         setError(err.message);
@@ -49,6 +47,7 @@ function Header() {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
+
   return (
     <>
       {/* Mobile Navbar */}
@@ -61,7 +60,7 @@ function Header() {
           <Link to="/">
             <img
               className="logo"
-              src={`http://localhost:5000/${data.logo}`}
+              src={`${API_BASE}/${data.logo}`}
               alt="Logo"
             />
           </Link>
@@ -98,88 +97,34 @@ function Header() {
           </button>
         </div>
       </nav>
+
       {/* Sidebar */}
       <div
         id="sidebar"
         className={`sidebar d-lg-none ${sidebarActive ? "active" : ""}`}
       >
         <ul className="list-unstyled">
-          <li>
-            <Link to="/" className="link-light">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/department" className="link-light">
-              Departments
-            </Link>
-          </li>
-          <li>
-            <Link to="/doctors" className="link-light">
-              Doctors
-            </Link>
-          </li>
-          <li>
-            <Link to="/services" className="link-light">
-              Services
-            </Link>
-          </li>
-          <li>
-            <Link to="/blogs" className="link-light">
-              Blog
-            </Link>
-          </li>
-          <li>
-            <Link to="/about-us" className="link-light">
-              About Us
-            </Link>
-          </li>
-          <li>
-            <Link to="/contactUs" className="link-light">
-              Contact Us
-            </Link>
-          </li>
+          <li><Link to="/" className="link-light">Home</Link></li>
+          <li><Link to="/department" className="link-light">Departments</Link></li>
+          <li><Link to="/doctors" className="link-light">Doctors</Link></li>
+          <li><Link to="/services" className="link-light">Services</Link></li>
+          <li><Link to="/blogs" className="link-light">Blog</Link></li>
+          <li><Link to="/about-us" className="link-light">About Us</Link></li>
+          <li><Link to="/contactUs" className="link-light">Contact Us</Link></li>
         </ul>
       </div>
+
       {/* Desktop Navbar */}
       <nav className="bg-nav-color bg-color py-4 px-5 d-none d-lg-flex sticky-top">
         <div className="container">
           <ul className="text-white list-unstyled d-flex gap-5 fw-bold m-0">
-            <li>
-              <Link to="/" className="link-light">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/department" className="link-light">
-                Departments
-              </Link>
-            </li>
-            <li>
-              <Link to="/doctors" className="link-light">
-                Doctors
-              </Link>
-            </li>
-            <li>
-              <Link to="/services" className="link-light">
-                Services
-              </Link>
-            </li>
-            <li>
-              <Link to="/blogs" className="link-light">
-                Blog
-              </Link>
-            </li>
-            <li>
-              <Link to="/about-us" className="link-light">
-                About Us
-              </Link>
-            </li>
-            <li>
-              <Link to="/contactUs" className="link-light">
-                Contact Us
-              </Link>
-            </li>
+            <li><Link to="/" className="link-light">Home</Link></li>
+            <li><Link to="/department" className="link-light">Departments</Link></li>
+            <li><Link to="/doctors" className="link-light">Doctors</Link></li>
+            <li><Link to="/services" className="link-light">Services</Link></li>
+            <li><Link to="/blogs" className="link-light">Blog</Link></li>
+            <li><Link to="/about-us" className="link-light">About Us</Link></li>
+            <li><Link to="/contactUs" className="link-light">Contact Us</Link></li>
           </ul>
         </div>
       </nav>

@@ -1,7 +1,7 @@
 import departmentMain from "../../../../assets/images/department-main.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAnglesRight, faCheck } from "@fortawesome/free-solid-svg-icons";
-import styles from "../Home.module.css"; // Importing CSS module
+import styles from "../Home.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -11,12 +11,12 @@ function Department() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const API_BASE = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5000/api/departments"
-        );
+        const response = await axios.get(`${API_BASE}/api/departments`);
         console.log(response.data);
         setData(response.data);
       } catch (err) {
@@ -26,10 +26,11 @@ function Department() {
       }
     };
     fetchData();
-  }, []);
+  }, [API_BASE]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
+
   return (
     <section className={`${styles.departments} ${styles["padding-tb"]} pb-0`}>
       <div className="container">
@@ -49,7 +50,7 @@ function Department() {
                       <li key={index}>
                         <Link to="/doctors">
                           <img
-                            src={`http://localhost:5000/${department.img}`}
+                            src={`${API_BASE}/${department.img}`}
                             alt="department"
                           />
                         </Link>
@@ -72,48 +73,22 @@ function Department() {
                           <h3>{data[0].header}</h3>
                           <p className="mb-2">{data[0].desc}</p>
                           <ul className="d-flex flex-wrap p-0">
-                            <li className="w-50 py-1">
-                              <FontAwesomeIcon
-                                icon={faCheck}
-                                className="me-2 text-primary"
-                              />
-                              Qualified Doctors
-                            </li>
-                            <li className="w-50 py-1">
-                              <FontAwesomeIcon
-                                icon={faCheck}
-                                className="me-2 text-primary"
-                              />
-                              Feel like Home Services
-                            </li>
-                            <li className="w-50 py-1">
-                              <FontAwesomeIcon
-                                icon={faCheck}
-                                className="me-2 text-primary"
-                              />
-                              24x7 Emergency Services
-                            </li>
-                            <li className="w-50 py-1">
-                              <FontAwesomeIcon
-                                icon={faCheck}
-                                className="me-2 text-primary"
-                              />
-                              Outdoor Checkup
-                            </li>
-                            <li className="w-50 py-1">
-                              <FontAwesomeIcon
-                                icon={faCheck}
-                                className="me-2 text-primary"
-                              />
-                              General Medical
-                            </li>
-                            <li className="w-50 py-1">
-                              <FontAwesomeIcon
-                                icon={faCheck}
-                                className="me-2 text-primary"
-                              />
-                              Easy and Affordable Billing
-                            </li>
+                            {[
+                              "Qualified Doctors",
+                              "Feel like Home Services",
+                              "24x7 Emergency Services",
+                              "Outdoor Checkup",
+                              "General Medical",
+                              "Easy and Affordable Billing",
+                            ].map((text, i) => (
+                              <li className="w-50 py-1" key={i}>
+                                <FontAwesomeIcon
+                                  icon={faCheck}
+                                  className="me-2 text-primary"
+                                />
+                                {text}
+                              </li>
+                            ))}
                           </ul>
                           <a
                             href="#appointment"

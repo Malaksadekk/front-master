@@ -29,7 +29,7 @@ function Appointments() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/appointments",
+        `${process.env.REACT_APP_API_URL}/api/appointments`,
         formData,
         {
           headers: {
@@ -38,28 +38,23 @@ function Appointments() {
         }
       );
       toast.success("Appointment booked successfully!");
-      console.log(response.data);
     } catch (error) {
-      if (error.response && error.response.data) {
-        console.log(error);
+      if (error.response?.data) {
         toast.error(error.response.data[0] || "Error booking appointment.");
       } else {
-        toast.error("Error booking appointment. Please try again.");
+        toast.error("Network error. Please try again.");
       }
-      console.error("There was an error!", error.message);
     }
   };
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/workingHours"
+          `${process.env.REACT_APP_API_URL}/api/workingHours`
         );
-        console.log(response.data[0]);
         setWorkingHours(response.data[0]);
       } catch (err) {
-        setError(err.message);
+        setError("Failed to load schedule");
       } finally {
         setLoading(false);
       }

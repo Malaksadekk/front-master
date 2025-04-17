@@ -16,7 +16,9 @@ const Blogs = () => {
     const fetchBlogs = async () => {
       try {
         setLoading(true);
-        const { data } = await axios.get('http://localhost:5000/api/blogPosts');
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/blogPosts`
+        );
         setBlogsData(data);
       } catch (error) {
         console.error('Error fetching blogs:', error);
@@ -25,10 +27,10 @@ const Blogs = () => {
         setLoading(false);
       }
     };
-
+  
     fetchBlogs();
-  }, []);
-
+  },
+   []);
   const handleReadMore = (blog) => {
     navigate(`/blog/${blog._id}`);
   };

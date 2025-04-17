@@ -12,12 +12,12 @@ const BlogDetails = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
+   useEffect(() => {
     const fetchBlog = async () => {
       try {
         setLoading(true);
         const { data } = await axios.get(
-          `http://localhost:5000/api/blogPosts/${id}`
+          `${process.env.REACT_APP_API_URL}/api/blogPosts/${id}`
         );
         setBlog(data);
       } catch (error) {
@@ -27,7 +27,6 @@ const BlogDetails = () => {
         setLoading(false);
       }
     };
-
     fetchBlog();
   }, [id]);
 
